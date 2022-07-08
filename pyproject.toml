@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "graduation_project"
+version = "0.1.0"
+description = "The framework to run UI tests in automative"
+authors = ["Kirill Serdyukov <serdyukovkirill2@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "~3.9"
+pytest = "^7.1.2"
+selenium = "^4.1.0"
+requests = "^2.28.1"
+allure-pytest = "^2.9.45"
+fake-useragent = "^0.1.11"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
