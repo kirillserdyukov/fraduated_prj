@@ -12,6 +12,7 @@ def driver():
     option = Options()
     option.add_argument('disable-notifications')  # выключаем оповещения
     option.headless = False  # В фоновом режиме
+    option.add_argument("--start-maximized")
     option.add_argument(f"user-agent={user}")  # подменить user-agent
     driver = webdriver.Chrome(options=option)
     # driver.maximize_window()
