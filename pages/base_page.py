@@ -1,6 +1,7 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class BasePage:
     def __init__(self, driver, url):
         self.driver = driver
@@ -27,5 +28,5 @@ class BasePage:
     def element_is_clickable(self, locator, timeout=5):
         return WebDriverWait(self.driver, timeout).until(EC.element_to_be_clickable(locator))
 
-    def scroll_(self, element):
-        self.driver.execute_script("argument[0].scrollIntoView();", element)
+    def scroll_into_view(self, element):
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)
