@@ -1,7 +1,7 @@
 import time
 
 from pages.base_page import BasePage
-from pages.elements_page import TextBoxPage, CheckBoxPage
+from pages.elements_page import TextBoxPage, CheckBoxPage, WebTablePage
 
 
 class TestTextBox:
@@ -22,3 +22,13 @@ class TestCheckBox:
         check_box_page.get_checked_checkbox()
         check_box_page.get_output_selected_title()
         check_box_page.compare_checked_checkbox_with_selected_output_title()
+
+
+class TestWebTable:
+    def test_web_table_add_person(self, driver):
+        web_table_page = WebTablePage(driver, "https://demoqa.com/webtables")
+        web_table_page.open()
+        web_table_page.add_new_person()
+        web_table_page.check_added_person()
+        web_table_page.is_added_person_in_table()
+

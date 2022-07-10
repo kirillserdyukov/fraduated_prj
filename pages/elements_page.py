@@ -2,7 +2,7 @@ import random
 import time
 
 from generator.generator import person_generator
-from locators.element_page_locators import TextBoxPageLocators, CheckBoxPageLocators
+from locators.element_page_locators import TextBoxPageLocators, CheckBoxPageLocators, WebTablePageLocators
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 
@@ -61,3 +61,33 @@ class CheckBoxPage(BasePage):
 
     def compare_checked_checkbox_with_selected_output_title(self):
         assert self.get_checked_checkbox() == self.get_output_selected_title(), "selected checkbox dont match with result output"
+
+
+class WebTablePage(BasePage):
+    def add_new_person(self):
+        person_info = next(person_generator())
+        first_name = person_info.first_name
+        last_name = person_info.last_name
+        email = person_info.email
+        age = person_info.age
+        salary = person_info.salary
+        department = person_info.department
+        self.element_is_visible(WebTablePageLocators.ADD_BUTTON).click()
+        self.element_is_visible(WebTablePageLocators.FIRSTNAME_FIELD).send_keys(first_name)
+        self.element_is_visible(WebTablePageLocators.LASTNAME_FIELD).send_keys(last_name)
+        self.element_is_visible(WebTablePageLocators.EMAIL_FIELD).send_keys(email)
+        self.element_is_visible(WebTablePageLocators.AGE_FIELD).send_keys(age)
+        self.element_is_visible(WebTablePageLocators.SALARY_FIELD).send_keys(salary)
+        self.element_is_visible(WebTablePageLocators.DEPARTMENT_FIELD).send_keys(department)
+        self.element_is_visible(WebTablePageLocators.SUBMIT_BUTTON).click()
+        return [first_name, last_name, str(age), email, str(salary), department]
+
+    def check_added_person(self):
+        rows_in_table = self.elements_are_present(WebTablePageLocators.ROWS_IN_TABLE)
+        data = []
+        for row in rows_in_table:
+            data.append(row.text.splitlines())
+        return data
+
+    def is_added_person_in_table(self):
+        assert self.add_new_person() in self.check_added_person(), "new person isn't in the table"

@@ -22,6 +22,15 @@ class CheckBoxPageLocators:
     CHECKED_ITEM = (By.XPATH, ".//ancestor::span[@class='rct-text']")
     RESULT_LIST = (By.CSS_SELECTOR, "span.text-success")
 
-    CURRENT_ADDRESS_FIELD = (By.CSS_SELECTOR, '#currentAddress')
-    PERMANENT_ADDRESS_FIELD = (By.CSS_SELECTOR, '#permanentAddress')
-    SUBMIT_BUTTON = (By.CSS_SELECTOR, '#submit')
+
+class WebTablePageLocators:
+    ADD_BUTTON = (By.CSS_SELECTOR, "#addNewRecordButton")
+    FIRSTNAME_FIELD = (By.CSS_SELECTOR, "#firstName")
+    LASTNAME_FIELD = (By.CSS_SELECTOR, "#lastName")
+    EMAIL_FIELD = (By.CSS_SELECTOR, "#userEmail")
+    AGE_FIELD = (By.CSS_SELECTOR, "#age")
+    SALARY_FIELD = (By.CSS_SELECTOR, "#salary")
+    DEPARTMENT_FIELD = (By.CSS_SELECTOR, "#department")
+    SUBMIT_BUTTON = (By.CSS_SELECTOR, "#submit")
+
+    ROWS_IN_TABLE = (By.CSS_SELECTOR, "div.rt-tr-group")
