@@ -1,6 +1,4 @@
 import time
-
-from pages.base_page import BasePage
 from pages.elements_page import TextBoxPage, CheckBoxPage, WebTablePage
 
 
@@ -38,5 +36,3 @@ class TestWebTable:
         web_table_page.select_up_to_some_rows()
 
 
-class ButtonsPage:
-    pass
