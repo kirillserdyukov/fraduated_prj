@@ -1,9 +1,19 @@
+
+
+#!groovy
+//Run docker build
+// properties([disabledConcurrentBuilds()])
+
 pipeline {
-    agent { docker { image 'python:3.9.9-alpine' } }
+    agent {
+        label 'master'
+        }
     stages {
-        stage('build') {
+        stage("create docker image") {
             steps {
-                sh 'python --version'
+                echo "========== start building image =========="
+                sh "docker build -t web_test ."
+                sh "docker run web_test pytest -s -v tests/"
             }
         }
     }

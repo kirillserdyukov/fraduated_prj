@@ -34,4 +34,4 @@ COPY tests ./tests
 COPY locators ./locators
 COPY generator ./generator
 COPY pages ./pages
-COPY pytest.ini .
+
