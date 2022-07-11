@@ -34,3 +34,4 @@ class WebTablePageLocators:
     SUBMIT_BUTTON = (By.CSS_SELECTOR, "#submit")
 
     ROWS_IN_TABLE = (By.CSS_SELECTOR, "div.rt-tr-group")
+    ROWS_COUNT_LIST = (By.CSS_SELECTOR, "div.rt-tr-group")

@@ -32,3 +32,11 @@ class TestWebTable:
         web_table_page.check_added_person()
         web_table_page.is_added_person_in_table()
 
+    def test_web_table_change_count_of_row(self, driver):
+        web_table_page = WebTablePage(driver, "https://demoqa.com/webtables")
+        web_table_page.open()
+        web_table_page.select_up_to_some_rows()
+
+
+class ButtonsPage:
+    pass

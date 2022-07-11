@@ -91,3 +91,18 @@ class WebTablePage(BasePage):
 
     def is_added_person_in_table(self):
         assert self.add_new_person() in self.check_added_person(), "new person isn't in the table"
+
+    def select_up_to_some_rows(self):
+        count = [5, 10, 20, 25, 50, 100]
+        data = []
+        for i in count:
+            select_row_button = self.element_is_visible(WebTablePageLocators.ROWS_COUNT_LIST)
+            self.scroll_into_view(select_row_button)
+            select_row_button.click()
+            self.element_is_visible((By.CSS_SELECTOR, f"[value='{i}']")).click()
+            data.append(self.check_count_rows())
+        assert count == data, "The count rows in the table haven't been changed"
+
+    def check_count_rows(self):
+        list_rows = self.elements_are_present(WebTablePageLocators.ROWS_IN_TABLE)
+        return len(list_rows)
