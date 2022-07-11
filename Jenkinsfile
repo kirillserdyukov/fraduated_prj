@@ -3,7 +3,7 @@ properties([disableConcurrentBuilds()])
 
 pipeline {
     agent {
-        label 'master'
+        label any
         }
     stages {
         stage("create docker image") {
