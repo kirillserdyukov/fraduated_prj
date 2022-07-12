@@ -1,8 +1,10 @@
 import random
 import time
 
+import requests
+
 from generator.generator import person_generator
-from locators.element_page_locators import TextBoxPageLocators, CheckBoxPageLocators, WebTablePageLocators
+from locators.element_page_locators import TextBoxPageLocators, CheckBoxPageLocators, WebTablePageLocators, ButtonsPageLocators, LinksPageLocators
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 
@@ -19,7 +21,7 @@ class TextBoxPage(BasePage):
         self.element_is_visible(TextBoxPageLocators.USER_EMAIL_FIELD).send_keys(email)
         self.element_is_visible(TextBoxPageLocators.CURRENT_ADDRESS_FIELD).send_keys(current_address)
         self.element_is_visible(TextBoxPageLocators.PERMANENT_ADDRESS_FIELD).send_keys(permanent_address)
-        self.element_is_visible(TextBoxPageLocators.SUBMIT_BUTTON).click()
+        self.element_is_clickable(TextBoxPageLocators.SUBMIT_BUTTON).click()
 
     def check_created_forms(self, full_name=full_name, email=email, current_address=current_address, permanent_address=permanent_address):
         assert self.element_is_present(TextBoxPageLocators.CREATED_FULL_NAME_FIELD).text.split(':')[1] == full_name, "the full name not correct"
@@ -106,3 +108,52 @@ class WebTablePage(BasePage):
     def check_count_rows(self):
         list_rows = self.elements_are_present(WebTablePageLocators.ROWS_IN_TABLE)
         return len(list_rows)
+
+
+class ButtonsPage(BasePage):
+
+    def click_on_different_button(self, type_click):
+        if type_click == "double":
+            self.double_click(self.element_is_visible(ButtonsPageLocators.DOUBLE_CLICK_BUTTON))
+            return self.message_after_click(ButtonsPageLocators.DOUBLE_CLICK_MESSAGE)
+
+        if type_click == "right":
+            self.right_click(self.element_is_visible(ButtonsPageLocators.RIGHT_CLICK_BUTTON))
+            return self.message_after_click(ButtonsPageLocators.RIGHT_CLICK_MESSAGE)
+
+        if type_click == "left":
+            self.element_is_visible(ButtonsPageLocators.LEFT_CLICK_BUTTON).click()
+            return self.message_after_click(ButtonsPageLocators.LEFT_CLICK_MESSAGE)
+
+    def message_after_click(self, locator):
+        return self.element_is_present(locator).text
+
+    def click_and_check_message_with_templates(self):
+        clicks_type = ["double", "right", "left"]
+        for click in clicks_type:
+            message = self.click_on_different_button(click)
+            if click == "double":
+                assert message == "You have done a double click"
+            if click == "right":
+                assert message == "You have done a right click"
+            if click == "left":
+                assert message == "You have done a dynamic click"
+
+
+class LinksPage(BasePage):
+
+    def check_home_link_in_new_tab(self):
+        working_link = self.element_is_visible(LinksPageLocators.HOME_LINK)
+        link_href = working_link.get_attribute('href')
+        requests.get(link_href)
+        working_link.click()
+        self.driver.switch_to.window(self.driver.window_handles[1])
+        url_2 = self.driver.current_url
+        assert link_href == url_2, "home link is not working in new tab"
+
+    def check_bad_request_link(self):
+        first_page_url = requests.get(self.driver.current_url)
+        self.element_is_present(LinksPageLocators.BAD_REQUEST).click()
+        second_page_url = requests.get(self.driver.current_url)
+        status_code = requests.status_codes
+        assert first_page_url != second_page_url and status_code not in [200, 201, 204, 301], "bad_request link is working, when is shouldn't "

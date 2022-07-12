@@ -35,3 +35,16 @@ class WebTablePageLocators:
 
     ROWS_IN_TABLE = (By.CSS_SELECTOR, "div.rt-tr-group")
     ROWS_COUNT_LIST = (By.CSS_SELECTOR, "div.rt-tr-group")
+
+
+class ButtonsPageLocators:
+    DOUBLE_CLICK_BUTTON = (By.CSS_SELECTOR, "#doubleClickBtn")
+    RIGHT_CLICK_BUTTON = (By.CSS_SELECTOR, "#rightClickBtn")
+    LEFT_CLICK_BUTTON = (By.XPATH, "//div[3]/button")
+    DOUBLE_CLICK_MESSAGE = (By.CSS_SELECTOR, "#doubleClickMessage")
+    RIGHT_CLICK_MESSAGE = (By.CSS_SELECTOR, "#rightClickMessage")
+    LEFT_CLICK_MESSAGE = (By.CSS_SELECTOR, "#dynamicClickMessage")
+
+class LinksPageLocators:
+    HOME_LINK = (By.CSS_SELECTOR, "#simpleLink")
+    BAD_REQUEST = (By.CSS_SELECTOR, "#bad-request")

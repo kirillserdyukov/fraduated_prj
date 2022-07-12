@@ -1,5 +1,5 @@
 import time
-from pages.elements_page import TextBoxPage, CheckBoxPage, WebTablePage
+from pages.elements_page import TextBoxPage, CheckBoxPage, WebTablePage, ButtonsPage, LinksPage
 
 
 class TestTextBox:
@@ -8,7 +8,6 @@ class TestTextBox:
         text_box_page.open()
         text_box_page.write_inside_all_forms()
         text_box_page.check_created_forms()
-        time.sleep(10)
 
 
 class TestCheckBox:
@@ -36,3 +35,20 @@ class TestWebTable:
         web_table_page.select_up_to_some_rows()
 
 
+class TestButton:
+    def test_different_click_on_the_buttons(self, driver):
+        buttons_page = ButtonsPage(driver, "https://demoqa.com/buttons")
+        buttons_page.open()
+        buttons_page.click_and_check_message_with_templates()
+
+
+class TestLinks:
+    def test_check_link(self, driver):
+        links_page = LinksPage(driver, "https://demoqa.com/links")
+        links_page.open()
+        links_page.check_home_link_in_new_tab()
+
+    def test_broken_link(self, driver): #Negative test
+        links_page = LinksPage(driver, "https://demoqa.com/links")
+        links_page.open()
+        links_page.check_bad_request_link()
