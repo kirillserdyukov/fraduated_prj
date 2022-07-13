@@ -10,10 +10,10 @@ import fake_useragent
 def driver():
     print("\nstart browser")
     option = Options()
-    # option.binary_location = "/usr/bin/google-chrome" # для тестов внутри контейнера
+    option.binary_location = "/usr/bin/google-chrome" # для тестов внутри контейнера
     # option.add_argument('disable-notifications')  # выключаем оповещения
     option.add_argument('--no-sandbox')
-    # option.add_argument('--headless')
+    option.add_argument('--headless')
     # option.add_argument('--disable-dev-shm-usage')
     # option.add_argument('--allow-file-access-from-files')
     option.add_argument("--window-size=1920,1080")
