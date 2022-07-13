@@ -14,7 +14,7 @@ pipeline {
             steps {
                 echo "========== start building image =========="
                 sh "docker build -t web_test ."
-                sh "docker run web_test pytest -s -v tests/element_test.py"
+                sh "docker run web_test pytest --alluredir'${WORKSPACE}' tests/element_test.py"
             }
         }
     }
