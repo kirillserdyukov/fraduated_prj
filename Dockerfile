@@ -19,7 +19,7 @@ RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 
 # Install Allure
 RUN apt-get -y update
-Run apt-get -y install allure
+RUN apt-get install -y allure
 
 # Install poetry.
 RUN pip install "poetry==$POETRY_VERSION"
@@ -30,7 +30,7 @@ COPY poetry.lock pyproject.toml ./
 
 # Install dependencies via Poetry.
 RUN poetry config virtualenvs.create false && \
-    poetry install --no-interaction --no-ansi \
+    poetry install --no-interaction --no-ansi 
 
 
 # Copy the source code into the image.
