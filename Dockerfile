@@ -30,7 +30,7 @@ COPY poetry.lock pyproject.toml ./
 
 # Install dependencies via Poetry.
 RUN poetry config virtualenvs.create false && \
-    poetry install --no-interaction --no-ansi \
+    poetry install --no-interaction --no-ansi 
 
 
 # Copy the source code into the image.
