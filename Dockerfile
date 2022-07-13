@@ -39,4 +39,4 @@ COPY generator ./generator
 COPY locators ./locators
 COPY pages ./pages
 COPY tests ./tests
-
+COPY conftest.py ./
