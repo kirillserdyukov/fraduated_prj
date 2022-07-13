@@ -16,6 +16,7 @@ pipeline {
                 sh "docker build -t web_test ."
                 sh "docker run web_test pytest --alluredir='${WORKSPACE}/allure-results' tests/element_test.py"
             }
+        }
         stage('reports') {
              steps {
              script {
