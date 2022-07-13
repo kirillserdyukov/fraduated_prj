@@ -14,7 +14,7 @@ def driver():
     option.add_argument('disable-notifications')  # выключаем оповещения
     option.add_argument('--no-sandbox')
     option.add_argument('--headless')
-    # option.add_argument('--disable-dev-shm-usage')
+    option.add_argument('--disable-dev-shm-usage')
     # option.add_argument('--allow-file-access-from-files')
     option.add_argument("--window-size=1920,1080")
     option.add_argument("--start-maximized")
