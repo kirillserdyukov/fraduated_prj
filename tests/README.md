@@ -28,7 +28,7 @@ First part of installation guide concerns global installation of Allure plugin a
 - Click "Add Allure Commandline" button.
 - Fill the name and choose the version in the "From Maven Central" dropdown.
 
-After than: 
+After then: 
 - Copy the HTTPS path to this repository.
 - Open Jenkins in your local machine.
 - Create a new Job.
