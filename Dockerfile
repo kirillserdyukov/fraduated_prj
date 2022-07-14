@@ -21,8 +21,8 @@ RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 #RUN apt-get -y update
 #RUN apt-get install -y allure
 #
-## Install poetry.
-#RUN pip install "poetry==$POETRY_VERSION"
+#Install poetry.
+RUN pip install "poetry==$POETRY_VERSION"
 
 # Copy the poetry files to speed up builds.
 WORKDIR /code
