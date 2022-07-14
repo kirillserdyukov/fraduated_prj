@@ -18,3 +18,4 @@ geckodriver.log
 .DS_Store
 .AppleDouble
 
+allure-report/*
